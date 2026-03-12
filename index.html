@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--
+      Double E Auto Service
+      Lightweight, responsive, framework-free site.
+    -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Double E Auto Service — Trusted auto repair in San Leandro. Reliable service, honest pricing, and experienced mechanics."
+    />
+
+    <title>Double E Auto Service | San Leandro Auto Repair</title>
+
+    <!-- Basic social sharing (optional but lightweight) -->
+    <meta property="og:title" content="Double E Auto Service" />
+    <meta
+      property="og:description"
+      content="Trusted auto repair in San Leandro. Reliable service, honest pricing, and experienced mechanics."
+    />
+    <meta property="og:type" content="website" />
+
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Clean, modern typography (Headings + Body) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Skip link for accessibility -->
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- =========================
+         Sticky Navigation Bar
+         - Business name
+         - Section links
+         - Mobile hamburger menu
+    ========================== -->
+    <header class="site-header" id="top">
+      <nav class="nav" aria-label="Primary">
+        <div class="nav__inner container">
+          <a class="brand" href="#home" aria-label="Double E Auto Service home">
+            <span class="brand__mark" aria-hidden="true"></span>
+            <span class="brand__text">Double E Auto Service</span>
+          </a>
+
+          <button
+            class="nav__toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="nav-menu"
+            data-nav-toggle
+          >
+            <span class="nav__toggle-lines" aria-hidden="true"></span>
+          </button>
+
+          <div class="nav__menu" id="nav-menu" data-nav-menu>
+            <a class="nav__link" href="#home">Home</a>
+            <a class="nav__link" href="#services">Services</a>
+            <a class="nav__link" href="#about">About</a>
+            <a class="nav__link" href="#contact">Contact</a>
+            <a class="nav__link nav__link--cta" href="#booking">Book Appointment</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- =========================
+           Hero Section
+           - Headline + subhead
+           - CTA buttons
+      ========================== -->
+      <section class="hero" id="home">
+        <div class="container hero__inner">
+          <div class="hero__content">
+            <p class="eyebrow">San Leandro, California</p>
+            <h1 class="hero__title">Reliable Auto Repair in San Leandro</h1>
+            <p class="hero__subtitle">
+              Trusted neighborhood service focused on honest work, dependable repairs,
+              and clear communication.
+            </p>
+
+            <div class="hero__actions">
+              <!-- Click-to-call -->
+              <a class="btn btn--primary" href="tel:5102139393">Call Now</a>
+              <a class="btn btn--ghost" href="#booking">Book Appointment</a>
+            </div>
+          </div>
+
+          <!-- Simple “info card” to balance the hero visually -->
+          <aside class="hero-card" aria-label="Location and quick info">
+            <h2 class="hero-card__title">Quick Info</h2>
+            <p class="hero-card__text">
+              16446 E 14th St<br />
+              San Leandro, CA 94578
+            </p>
+            <a class="btn btn--small btn--secondary" href="#map">View Map</a>
+            <div class="hero-card__divider" role="separator" aria-hidden="true"></div>
+            <p class="hero-card__hint">
+              Call us at <a class="link" href="tel:5102139393">(510) 213-9393</a> or
+              <a class="link" href="tel:5103638388">(510) 363-8388</a>.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- =========================
+           Services Section
+           - Service cards grid
+      ========================== -->
+      <section class="section" id="services">
+        <div class="container">
+          <header class="section__header">
+            <h2 class="section__title">Services</h2>
+            <p class="section__subtitle">
+              Routine maintenance and trusted repairs to keep your vehicle safe and
+              reliable.
+            </p>
+          </header>
+
+          <div class="grid cards">
+            <!-- Service card -->
+            <article class="card">
+              <div class="card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 3h10" />
+                  <path d="M9 3v6l-2 4v7h10v-7l-2-4V3" />
+                  <path d="M9 9h6" />
+                </svg>
+              </div>
+              <h3 class="card__title">Oil Changes</h3>
+              <p class="card__text">
+                Quick, clean service with the right oil and filter for your vehicle.
+              </p>
+            </article>
+
+            <article class="card">
+              <div class="card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 13h10" />
+                  <path d="M8 9c2-2 6-2 8 0" />
+                  <path d="M6 17c3 3 9 3 12 0" />
+                  <path d="M4 13c0-4.5 3.6-8 8-8s8 3.5 8 8" />
+                </svg>
+              </div>
+              <h3 class="card__title">Brake Repair</h3>
+              <p class="card__text">
+                Brake inspections, pad/rotor replacement, and safe stopping power.
+              </p>
+            </article>
+
+            <article class="card">
+              <div class="card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 7h6" />
+                  <path d="M10 7V5h4v2" />
+                  <path d="M7 9h10v8H7z" />
+                  <path d="M9 17v2h6v-2" />
+                </svg>
+              </div>
+              <h3 class="card__title">Engine Diagnostics</h3>
+              <p class="card__text">
+                Check-engine light scans and troubleshooting to pinpoint issues fast.
+              </p>
+            </article>
+
+            <article class="card">
+              <div class="card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 12h10" />
+                  <path d="M12 7v10" />
+                  <path d="M9 9l6 6" />
+                  <path d="M15 9l-6 6" />
+                </svg>
+              </div>
+              <h3 class="card__title">Transmission Service</h3>
+              <p class="card__text">
+                Fluid service and diagnostics to help extend transmission life.
+              </p>
+            </article>
+
+            <article class="card">
+              <div class="card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="7" />
+                  <circle cx="12" cy="12" r="2" />
+                  <path d="M12 5v2" />
+                  <path d="M12 17v2" />
+                  <path d="M5 12h2" />
+                  <path d="M17 12h2" />
+                </svg>
+              </div>
+              <h3 class="card__title">Tire Services</h3>
+              <p class="card__text">
+                Tire checks, rotations, and recommendations for safer handling.
+              </p>
+            </article>
+
+            <article class="card">
+              <div class="card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 7h8" />
+                  <path d="M7 10h10" />
+                  <path d="M6 13h12" />
+                  <path d="M9 16h6" />
+                </svg>
+              </div>
+              <h3 class="card__title">General Maintenance</h3>
+              <p class="card__text">
+                Inspections and scheduled maintenance tailored to your mileage.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           About Section
+      ========================== -->
+      <section class="section section--alt" id="about">
+        <div class="container">
+          <header class="section__header">
+            <h2 class="section__title">About</h2>
+            <p class="section__subtitle">
+              Neighborhood service with a professional standard.
+            </p>
+          </header>
+
+          <div class="two-col">
+            <div class="prose">
+              <p>
+                Double E Auto Service is a trusted neighborhood mechanic in San
+                Leandro focused on honest work, dependable repairs, and customer
+                satisfaction. We take the time to explain what your vehicle needs,
+                prioritize safety, and aim for efficient turnaround whenever possible.
+              </p>
+              <p>
+                Whether you’re here for routine maintenance or diagnostics, you can
+                expect clear communication and straightforward pricing.
+              </p>
+            </div>
+
+            <div class="info-panel" aria-label="Quick details">
+              <div class="info-panel__row">
+                <span class="info-panel__label">Location</span>
+                <span class="info-panel__value">San Leandro, CA</span>
+              </div>
+              <div class="info-panel__row">
+                <span class="info-panel__label">Address</span>
+                <span class="info-panel__value">
+                  16446 E 14th St, San Leandro, CA 94578
+                </span>
+              </div>
+              <div class="info-panel__row">
+                <span class="info-panel__label">Email</span>
+                <a class="info-panel__value link" href="mailto:k-kuo@sbcglobal.net"
+                  >k-kuo@sbcglobal.net</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           Contact Section
+           - Clickable tel/mail links
+           - Business hours placeholder
+      ========================== -->
+      <section class="section" id="contact">
+        <div class="container">
+          <header class="section__header">
+            <h2 class="section__title">Contact</h2>
+            <p class="section__subtitle">
+              Call, email, or stop by. We’re happy to help.
+            </p>
+          </header>
+
+          <div class="contact-grid">
+            <div class="contact-card">
+              <h3 class="contact-card__title">Shop Info</h3>
+              <dl class="contact-list">
+                <div class="contact-list__row">
+                  <dt>Address</dt>
+                  <dd>16446 E 14th St, San Leandro, CA 94578</dd>
+                </div>
+                <div class="contact-list__row">
+                  <dt>Primary Phone</dt>
+                  <dd><a href="tel:5102139393">(510) 213-9393</a></dd>
+                </div>
+                <div class="contact-list__row">
+                  <dt>Secondary Phone</dt>
+                  <dd><a href="tel:5103638388">(510) 363-8388</a></dd>
+                </div>
+                <div class="contact-list__row">
+                  <dt>Email</dt>
+                  <dd>
+                    <a href="mailto:k-kuo@sbcglobal.net">k-kuo@sbcglobal.net</a>
+                  </dd>
+                </div>
+                <div class="contact-list__row">
+                  <dt>Business Hours</dt>
+                  <dd>Mon–Sat: 8:00 AM – 6:00 PM (placeholder)</dd>
+                </div>
+              </dl>
+
+              <div class="contact-card__actions">
+                <a class="btn btn--primary btn--light" href="tel:5102139393">Call Primary</a>
+                <a class="btn btn--ghost btn--light" href="#booking">Book Appointment</a>
+              </div>
+            </div>
+
+            <div class="contact-card contact-card--map" id="map">
+              <h3 class="contact-card__title">Map</h3>
+
+              <!-- Google Maps embed (iframe) -->
+              <div class="map">
+                <iframe
+                  title="Double E Auto Service location"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps?q=16446%20E%2014th%20St%2C%20San%20Leandro%2C%20CA%2094578&output=embed"
+                  allowfullscreen
+                ></iframe>
+              </div>
+
+              <div class="contact-card__actions">
+                <a
+                  class="btn btn--primary btn--light"
+                  href="https://www.google.com/maps?q=16446%20E%2014th%20St%2C%20San%20Leandro%2C%20CA%2094578"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Open in Google Maps
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           Booking Section
+           - Simple appointment form
+           - Lightweight: uses mailto: fallback + optional JS validation
+      ========================== -->
+      <section class="section section--alt" id="booking">
+        <div class="container">
+          <header class="section__header">
+            <h2 class="section__title">Book Appointment</h2>
+            <p class="section__subtitle">
+              Send a request and we’ll follow up to confirm availability.
+            </p>
+          </header>
+
+          <div class="booking">
+            <form class="form" id="booking-form" novalidate>
+              <!-- Name -->
+              <div class="field">
+                <label class="label" for="name">Name</label>
+                <input class="input" id="name" name="name" type="text" autocomplete="name" required />
+                <p class="field__error" data-error-for="name" aria-live="polite"></p>
+              </div>
+
+              <!-- Phone -->
+              <div class="field">
+                <label class="label" for="phone">Phone</label>
+                <input
+                  class="input"
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  required
+                />
+                <p class="field__error" data-error-for="phone" aria-live="polite"></p>
+              </div>
+
+              <!-- Email -->
+              <div class="field">
+                <label class="label" for="email">Email</label>
+                <input
+                  class="input"
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                />
+                <p class="field__error" data-error-for="email" aria-live="polite"></p>
+              </div>
+
+              <!-- Preferred date -->
+              <div class="field">
+                <label class="label" for="date">Preferred date</label>
+                <input class="input" id="date" name="date" type="date" required />
+                <p class="field__error" data-error-for="date" aria-live="polite"></p>
+              </div>
+
+              <!-- Vehicle issue -->
+              <div class="field field--full">
+                <label class="label" for="issue">Vehicle issue</label>
+                <textarea
+                  class="textarea"
+                  id="issue"
+                  name="issue"
+                  rows="5"
+                  placeholder="Briefly describe the problem (sounds, warning lights, symptoms, etc.)"
+                  required
+                ></textarea>
+                <p class="field__error" data-error-for="issue" aria-live="polite"></p>
+              </div>
+
+              <div class="form__actions field--full">
+                <button class="btn btn--primary btn--light" type="submit">Submit Request</button>
+                <p class="form__note">
+                  Prefer calling? Dial <a class="link" href="tel:5102139393">(510) 213-9393</a>.
+                </p>
+              </div>
+
+              <!-- Lightweight status area -->
+              <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================
+         Footer
+    ========================== -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__brand">
+          <div class="footer__name">Double E Auto Service</div>
+          <div class="footer__small">
+            16446 E 14th St, San Leandro, CA 94578
+          </div>
+        </div>
+
+        <div class="footer__links" aria-label="Footer contact">
+          <a class="footer__link" href="tel:5102139393">(510) 213-9393</a>
+          <a class="footer__link" href="tel:5103638388">(510) 363-8388</a>
+          <a class="footer__link" href="mailto:k-kuo@sbcglobal.net">k-kuo@sbcglobal.net</a>
+        </div>
+
+        <div class="footer__copy">
+          <span>&copy; <span id="year"></span> Double E Auto Service.</span>
+          <span class="footer__sep" aria-hidden="true">•</span>
+          <span>All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
