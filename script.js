@@ -3,7 +3,7 @@
   Minimal JavaScript:
   - Mobile hamburger menu toggle + close behaviors
   - Smooth scrolling fallback (for browsers that don't support CSS smooth scrolling)
-  - Booking form: lightweight validation + submits to Google Sheets (Apps Script)
+  - Booking form: lightweight validation + submits to Formspree
 */
 
 (() => {
@@ -81,17 +81,10 @@
   // -----------------------------
   // Booking form
   // - Validates required fields
-  // - Sends to Google Sheets via Apps Script Web App
+  // - Sends to Formspree (AJAX) so the page doesn't navigate away
   // -----------------------------
   const form = $("#booking-form");
   const status = $("#form-status");
-
-  /*
-    1) Create a Google Sheet (your "bookings inbox")
-    2) Create an Apps Script Web App for it (code provided in instructions)
-    3) Paste the deployed Web App URL below:
-  */
-  const BOOKINGS_ENDPOINT = ""; // <-- paste your Apps Script Web App URL here
 
   function setError(name, message) {
     const el = document.querySelector(`[data-error-for="${name}"]`);
@@ -161,51 +154,31 @@
         return;
       }
 
-      if (!BOOKINGS_ENDPOINT) {
-        if (status) {
-          status.textContent =
-            "Booking form isn’t connected yet. Paste your Google Apps Script Web App URL into script.js (BOOKINGS_ENDPOINT).";
-        }
-        return;
-      }
-
-      // Prepare payload for Sheets
-      const payload = {
-        name,
-        phone,
-        email,
-        preferredDate: date,
-        issue,
-        page: window.location.href,
-        userAgent: navigator.userAgent,
-      };
-
       try {
         setBusy(true);
         if (status) status.textContent = "Submitting your request…";
 
-        // Apps Script Web Apps are easiest with URL-encoded form data.
-        const formBody = new URLSearchParams(payload).toString();
+        const endpoint = (form.getAttribute("action") || "").trim();
+        if (!endpoint) {
+          if (status) {
+            status.textContent =
+              "Booking form isn’t connected yet. Paste your Formspree endpoint into the form action in index.html.";
+          }
+          return;
+        }
 
-        const res = await fetch(BOOKINGS_ENDPOINT, {
+        // Send to Formspree using AJAX (keeps user on-page).
+        const fd = new FormData(form);
+        fd.set("preferredDate", date); // include a clearer field name too
+        fd.set("page", window.location.href);
+
+        const res = await fetch(endpoint, {
           method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-          body: formBody,
+          body: fd,
+          headers: { Accept: "application/json" },
         });
 
-        // Some deployments return text, some return JSON
-        const text = await res.text();
-        let okResponse = res.ok;
-        try {
-          const json = JSON.parse(text);
-          okResponse = !!json.ok;
-        } catch {
-          // ignore parse failures; fall back to HTTP status
-        }
-
-        if (!okResponse) {
-          throw new Error("Server rejected booking request.");
-        }
+        if (!res.ok) throw new Error("Formspree submission failed");
 
         form.reset();
         if (status) status.textContent = "Request received. We’ll contact you to confirm.";

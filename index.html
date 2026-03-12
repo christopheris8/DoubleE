@@ -362,7 +362,18 @@
           </header>
 
           <div class="booking">
-            <form class="form" id="booking-form" novalidate>
+            <!--
+              Bookings are handled by Formspree.
+              After you create your form in Formspree, paste your endpoint into the action attribute:
+              Example: https://formspree.io/f/xxxxabcd
+            -->
+            <form
+              class="form"
+              id="booking-form"
+              action=""
+              method="POST"
+              novalidate
+            >
               <!-- Name -->
               <div class="field">
                 <label class="label" for="name">Name</label>
