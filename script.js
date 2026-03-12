@@ -3,7 +3,7 @@
   Minimal JavaScript:
   - Mobile hamburger menu toggle + close behaviors
   - Smooth scrolling fallback (for browsers that don't support CSS smooth scrolling)
-  - Booking form: lightweight validation + opens a pre-filled email (no backend)
+  - Booking form: lightweight validation + submits to Google Sheets (Apps Script)
 */
 
 (() => {
@@ -81,13 +81,17 @@
   // -----------------------------
   // Booking form
   // - Validates required fields
-  // - Opens email draft (mailto) pre-filled with details
+  // - Sends to Google Sheets via Apps Script Web App
   // -----------------------------
   const form = $("#booking-form");
   const status = $("#form-status");
 
-  const SHOP_EMAIL = "k-kuo@sbcglobal.net";
-  const SUBJECT = "Appointment Request — Double E Auto Service";
+  /*
+    1) Create a Google Sheet (your "bookings inbox")
+    2) Create an Apps Script Web App for it (code provided in instructions)
+    3) Paste the deployed Web App URL below:
+  */
+  const BOOKINGS_ENDPOINT = ""; // <-- paste your Apps Script Web App URL here
 
   function setError(name, message) {
     const el = document.querySelector(`[data-error-for="${name}"]`);
@@ -109,8 +113,14 @@
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
+  function setBusy(isBusy) {
+    if (!form) return;
+    const btn = form.querySelector('button[type="submit"]');
+    if (btn) btn.disabled = isBusy;
+  }
+
   if (form) {
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       clearErrors();
       if (status) status.textContent = "";
@@ -151,33 +161,61 @@
         return;
       }
 
-      // Build a clean email body
-      const body = [
-        "Hello Double E Auto Service,",
-        "",
-        "I'd like to request an appointment.",
-        "",
-        `Name: ${name}`,
-        `Phone: ${phone}`,
-        `Email: ${email}`,
-        `Preferred date: ${date}`,
-        "",
-        "Vehicle issue:",
+      if (!BOOKINGS_ENDPOINT) {
+        if (status) {
+          status.textContent =
+            "Booking form isn’t connected yet. Paste your Google Apps Script Web App URL into script.js (BOOKINGS_ENDPOINT).";
+        }
+        return;
+      }
+
+      // Prepare payload for Sheets
+      const payload = {
+        name,
+        phone,
+        email,
+        preferredDate: date,
         issue,
-        "",
-        "Thank you!",
-      ].join("\n");
+        page: window.location.href,
+        userAgent: navigator.userAgent,
+      };
 
-      const mailto = `mailto:${encodeURIComponent(SHOP_EMAIL)}?subject=${encodeURIComponent(
-        SUBJECT
-      )}&body=${encodeURIComponent(body)}`;
+      try {
+        setBusy(true);
+        if (status) status.textContent = "Submitting your request…";
 
-      // Trigger the user’s email client (fastest no-backend option)
-      window.location.href = mailto;
+        // Apps Script Web Apps are easiest with URL-encoded form data.
+        const formBody = new URLSearchParams(payload).toString();
 
-      if (status) {
-        status.textContent =
-          "Opening your email app to send the appointment request…";
+        const res = await fetch(BOOKINGS_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+          body: formBody,
+        });
+
+        // Some deployments return text, some return JSON
+        const text = await res.text();
+        let okResponse = res.ok;
+        try {
+          const json = JSON.parse(text);
+          okResponse = !!json.ok;
+        } catch {
+          // ignore parse failures; fall back to HTTP status
+        }
+
+        if (!okResponse) {
+          throw new Error("Server rejected booking request.");
+        }
+
+        form.reset();
+        if (status) status.textContent = "Request received. We’ll contact you to confirm.";
+      } catch (err) {
+        if (status) {
+          status.textContent =
+            "Sorry—your request couldn’t be submitted. Please call (510) 213-9393.";
+        }
+      } finally {
+        setBusy(false);
       }
     });
   }
